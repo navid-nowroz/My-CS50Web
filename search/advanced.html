@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Advanced Search</title>
+        <link rel="icon" href="google_icon.png" type="image/png">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <header>
+            <div class="topnav" style="margin-top: 30px;">
+                <div id="advanced_logo">
+                <img src="google_logo.png" alt="Google Logo">
+                </div>
+                <a href="index.html">Search</a>
+                <a href="images.html">Images</a>
+            </div>
+            <hr style="color: lightgray; margin: 30px 0px 50px 0px;">
+        </header>
+        <div class="adheadbox">
+            <h1 class="adhead" style="font-size: 40px; margin-top:20px;">Advanced Search</h1>
+            <br><br>
+            <h2 class="adhead">Find pages with</h2>
+            <br><br>
+            <form action="https://google.com/search" id="advanced_form">
+                <div class="labdiv">
+                <label for="all_search" class="adhead">All of these words:</label>
+                </div>
+                <div >
+                <input type="search" name="as_q" id="all_search" class="ad_search">
+                </div>
+                <div class="labdiv">
+                <label for="exact_search" class="adhead">This exact word or phrase:</label>
+                </div>
+                <div>
+                <input type="search" name="as_epq" id="exact_search" class="ad_search">
+                </div> 
+                <div class="labdiv">
+                <label for="none_search" class="adhead">None of these words:</label>
+                </div>
+                <div>
+                <input type="search" name="as_eq" id="none_search" class="ad_search">
+                </div>
+                <div class="labdiv">
+                <label for="site_search" class="adhead">Site or domain:</label>
+                </div>
+                <div>
+                <input type="search" name="as_sitesearch" id="site_search" class="ad_search">
+                </div>
+            </form>
+        </div>
+        <div id="adsubmit">
+            <button type="submit" form="advanced_form" value="Submit" style="margin-left: 50px; margin-top: 20px;">Advanced Search</button>
+        </div>
+    </body>
+</html>
