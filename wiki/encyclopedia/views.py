@@ -62,16 +62,17 @@ def new(request):
 def created(request):
     if request.method == "POST":
         form = NewEntryForm(request.POST)
-        title = form.cleaned_data("title")
-        content = form.cleaned_data("content")
+        form.is_valid()
+        title = form.cleaned_data["title"]
+        content = form.cleaned_data["content"]
         entries = util.list_entries()
 
         if title.lower() not in list(map(str.lower, entries)):
             util.save_entry(title, content)
-            return redirect(reverse("show-entry"), kwargs={"title" : title})
+            return redirect(reverse("show-entry", kwargs={"title" : title}))
         
         else:
-            return 
+            return render(request, "encyclopedia/created_apology.html")
     else:
         return redirect("new")
 

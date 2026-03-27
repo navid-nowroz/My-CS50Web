@@ -1,7 +1,14 @@
-{% enxtends "encyclopedia/new.html" %}
+{% extends "encyclopedia/layout.html" %}
 
-{% block apology %}
+{% block body %}
 <h1>Error: That apology already exists.</h1>
 <p>You can still create a new entry from here.</p>
 <hr>
+<h1>Create your new Entry:</h1>
+
+<form action="{% url 'created' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Submit</button>
+    </form>
 {% endblock %}
