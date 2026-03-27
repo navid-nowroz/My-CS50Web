@@ -3,6 +3,7 @@
 {% block title %}New Entry {% endblock %}
 
 {% block body %}
+    <h1>Create your new Entry:</h1>
     <form action="{% url 'created'}" method="post">
         {% csrf_token %}
         {{ form }}

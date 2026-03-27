@@ -8,10 +8,10 @@ from django.urls import reverse
 class NewEntryForm(forms.Form):
     title = forms.CharField(label="Title",
                             widget=forms.TextInput(attrs={
-                                "placeholder" : "Here goes the title"
+                                "placeholder" : "Write the title..."
                                 }))
     content= forms.CharField(widget=forms.Textarea(attrs={
-        'placeholder' : 'Write the content here'
+        'placeholder' : 'Write the content here....'
     })
                              , label="Content")
 
