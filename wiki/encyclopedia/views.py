@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from . import util
 import markdown2
 from django import forms
+from django.urls import reverse
 
 
 class NewEntryForm(forms.Form):
@@ -63,8 +64,14 @@ def created(request):
         form = NewEntryForm(request.POST)
         title = form.cleaned_data("title")
         content = form.cleaned_data("content")
+        entries = util.list_entries()
+
+        if title.lower() not in list(map(str.lower, entries)):
+            util.save_entry(title, content)
+            return redirect(reverse("show-entry"), kwargs={"title" : title})
         
-        util.save_entry(title, content)
+        else:
+            return 
     else:
         return redirect("new")
 
