@@ -1,8 +1,13 @@
 from django.shortcuts import render, redirect
-
 from . import util
-
 import markdown2
+from django import forms
+
+
+class NewEntryForm(forms.Form):
+    title = forms.CharField(label="title")
+    content= forms.CharField(widget=forms.Textarea)
+
 
 
 def index(request):
@@ -43,5 +48,7 @@ def search(request,):
     
 
 def new(request):
-    return render(request, "encyclopedia/new.html")
+    return render(request, "encyclopedia/new.html", {
+        "form" : NewEntryForm()
+    })
 
