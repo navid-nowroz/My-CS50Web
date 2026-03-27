@@ -1,8 +1,8 @@
 {% extends "encyclopedia/layout.html" %}
 
 {% block body %}
-<h1>Error: That apology already exists.</h1>
-<p>You can still create a new entry from here.</p>
+<h1>Error: 1984</h1>
+<p>That Entry already exist in our Database. <br>You can still create a new entry from here.</p>
 <hr>
 <h1>Create your new Entry:</h1>
 
@@ -10,5 +10,5 @@
     {% csrf_token %}
     {{ form }}
     <button type="submit">Submit</button>
-    </form>
+</form>
 {% endblock %}

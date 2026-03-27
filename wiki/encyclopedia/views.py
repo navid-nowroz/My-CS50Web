@@ -72,7 +72,9 @@ def created(request):
             return redirect(reverse("show-entry", kwargs={"title" : title}))
         
         else:
-            return render(request, "encyclopedia/created_apology.html")
+            return render(request, "encyclopedia/created_apology.html", {
+                "form" : NewEntryForm()
+            })
     else:
         return redirect("new")
 
