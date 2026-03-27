@@ -5,8 +5,14 @@ from django import forms
 
 
 class NewEntryForm(forms.Form):
-    title = forms.CharField(label="title")
-    content= forms.CharField(widget=forms.Textarea)
+    title = forms.CharField(label="Title",
+                            widget=forms.TextInput(attrs={
+                                "placeholder" : "Here goes the title"
+                                }))
+    content= forms.CharField(widget=forms.Textarea(attrs={
+        'placeholder' : 'Write the content here'
+    })
+                             , label="Content")
 
 
 
@@ -51,4 +57,14 @@ def new(request):
     return render(request, "encyclopedia/new.html", {
         "form" : NewEntryForm()
     })
+
+def created(request):
+    if request.method == "POST":
+        form = NewEntryForm(request.POST)
+        title = form.cleaned_data("title")
+        content = form.cleaned_data("content")
+        
+        util.save_entry(title, content)
+    else:
+        return redirect("new")
 

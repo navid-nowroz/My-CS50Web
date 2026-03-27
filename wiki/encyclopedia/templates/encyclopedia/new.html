@@ -3,7 +3,7 @@
 {% block title %}New Entry {% endblock %}
 
 {% block body %}
-    <form action="{% url 'created'}" method="get">
+    <form action="{% url 'created'}" method="post">
         {% csrf_token %}
         {{ form }}
         <button type="submit">Submit</button>
