@@ -40,3 +40,8 @@ def search(request,):
         return render(request, "encyclopedia/search_results.html", {
             "results" : results, "query": query
         })
+    
+
+def new(request):
+    return render(request, "encyclopedia/new.html")
+
