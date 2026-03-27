@@ -3,5 +3,13 @@
 {% block title %}Search[{{ query }}] {% endblock %}
 
 {% block body %}
-{{result}}
+    <h1>Search Results</h1>
+
+    <ul>
+        {% for entry in results %}
+            <li>
+                <a href="{% url 'show-entry' entry %}">{{ entry }}</a>
+            </li>
+        {% endfor %}
+    </ul>
  {% endblock %}

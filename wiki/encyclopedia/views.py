@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from . import util
 
@@ -28,10 +28,8 @@ def search(request,):
     entries = util.list_entries()
     results = [entry for entry in entries if query.lower() in entry.lower()]
 
-    if query in entries:
-        return render(request, "encyclopedia/entry.html", {
-            "title" : query
-        })
+    if query.lower() in list(map(str.lower, entries)):
+        return redirect("show-entry", title=query)
     
     elif not len(results) > 0:
         return render(request, "encyclopedia/error_load.html", {
