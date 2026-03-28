@@ -2,5 +2,9 @@
 
 {% block title %}{{title}} {% endblock %}
 
-{% block body %} {{content |safe }}
+{% block body %} 
+{{content |safe }} <hr>
+<form action="{% url 'edit' title %}">
+    <button type="submit">Edit Content</button>
+</form>
 {% endblock %}
