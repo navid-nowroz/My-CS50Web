@@ -1,7 +1,7 @@
-{% extends "encyclopedia/edit.html" %}
+{% extends "encyclopedia/layout.html" %}
 
 {% block body %}
-    <form action="{% url 'created' %}" method="post">
+    <form action="{% url 'edit' %}" method="post">
         {% csrf_token %}
         <input type="hidden" name="title" value='{{ title }}'>
         {{ form }}
