@@ -14,13 +14,17 @@ class NewEntryForm(forms.Form):
         'placeholder' : 'Write the content here....'
     })
                              , label="Content")
+    
 
+class EditEntryForm(forms.Form):
+    content = forms.CharField(widget=forms.Textarea)
 
 
 def index(request):
     return render(request, "encyclopedia/index.html", {
         "entries": util.list_entries()
     })
+
 
 def title(request, title):
     content = util.get_entry(title)
@@ -34,6 +38,7 @@ def title(request, title):
         return render(request, "encyclopedia/entry.html", {
             "content": markdown2.markdown(content), "title" : title
         })
+
 
 def search(request,):
     query = request.GET.get("q")
@@ -59,6 +64,7 @@ def new(request):
         "form" : NewEntryForm()
     })
 
+
 def created(request):
     if request.method == "POST":
         form = NewEntryForm(request.POST)
@@ -78,3 +84,12 @@ def created(request):
     else:
         return redirect("new")
 
+
+def edit(request, title):
+    content = util.get_entry(title)
+
+    form = EditEntryForm(initial={"content" : content})
+    return render(request, "encyclopedia/edit.html", {
+        "title" : title,
+        "form" : form,
+    })

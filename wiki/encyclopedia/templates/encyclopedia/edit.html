@@ -1,0 +1,9 @@
+{% extends "encyclopedia/edit.html" %}
+
+{% block body %}
+    <form action="{% url 'created'}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" name="title" value=title>Submit update</button>
+    </form>
+{% endblock %}
