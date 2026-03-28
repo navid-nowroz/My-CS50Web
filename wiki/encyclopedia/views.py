@@ -3,6 +3,7 @@ from . import util
 import markdown2
 from django import forms
 from django.urls import reverse
+import random
 
 
 class NewEntryForm(forms.Form):
@@ -108,3 +109,13 @@ def updated(request):
     
     else:
         return redirect(reverse("show-entry", kwargs={"title" : title}))
+    
+
+def randomise(request):
+    random_entry = random.choice(util.list_entries())
+    content = util.get_entry(random_entry)
+    
+    return render(request, "encyclopedia/entry.html", {
+        "content" : markdown2.markdown(content),
+        "title" : random_entry,
+    })
