@@ -68,9 +68,9 @@ def new(request):
 def created(request):
     if request.method == "POST":
         form = NewEntryForm(request.POST)
-        form.is_valid()
-        title = form.cleaned_data["title"]
-        content = form.cleaned_data["content"]
+        if form.is_valid():
+            title = form.cleaned_data["title"]
+            content = form.cleaned_data["content"]
         entries = util.list_entries()
 
         if title.lower() not in list(map(str.lower, entries)):
@@ -95,3 +95,16 @@ def edit(request, title):
     })
 
 
+def updated(request):
+    if request.method == "POST":
+        form = EditEntryForm(request.POST)
+        if form.is_valid():
+            title = form.cleaned_data["title"]
+            content = form.cleaned_data["content"]
+        entries = util.list_entries()
+
+        util.save_entry(title, content)
+        return redirect(reverse("show-entry", kwargs={"title" : title}))
+    
+    else:
+        return redirect(reverse("show-entry", kwargs={"title" : title}))
