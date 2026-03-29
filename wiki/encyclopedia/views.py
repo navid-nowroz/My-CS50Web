@@ -90,7 +90,7 @@ def created(request):
 def edit(request, title):
     content = util.get_entry(title)
 
-    form = EditEntryForm(initial={"content" : content})
+    form = EditEntryForm(initial={"title" : title, "content" : content})
     return render(request, "encyclopedia/edit.html", {
         "title" : title,
         "form" : form,
