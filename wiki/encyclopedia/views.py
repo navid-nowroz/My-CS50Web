@@ -18,6 +18,7 @@ class NewEntryForm(forms.Form):
     
 
 class EditEntryForm(forms.Form):
+    title= forms.CharField(widget=forms.HiddenInput())
     content = forms.CharField(widget=forms.Textarea)
 
 

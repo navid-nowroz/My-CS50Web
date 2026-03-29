@@ -5,9 +5,8 @@
 {% block body %}
     <h1>Edit: {{ title }}</h1>
     <hr>
-    <form action="{% url 'edit' title %}" method="post">
+    <form action="{% url 'updated' title %}" method=["get", "post"]>
         {% csrf_token %}
-        <input type="hidden" name="title" value='{{ title }}'>
         {{ form }}
         <button type="submit">Submit update</button>
     </form>
